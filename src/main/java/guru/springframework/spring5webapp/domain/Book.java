@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -20,7 +21,8 @@ public class Book {
 	private String title;
 
 	private String isbn;
-
+	@ManyToOne
+	private Publisher publisher;
 
 	@ManyToMany
 	@JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
@@ -45,6 +47,16 @@ public class Book {
 	{
 		this.title = title;
 		this.isbn = isbn;
+	}
+
+	public Publisher getPublisher()
+	{
+		return publisher;
+	}
+
+	public void setPublisher(Publisher publisher)
+	{
+		this.publisher = publisher;
 	}
 
 	public String getTitle()
